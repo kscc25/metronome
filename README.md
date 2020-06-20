@@ -31,6 +31,12 @@ metronome.stop();
 
 See example in `public` directory.
 
+## Development
+
+1. Clone the repo.
+2. Install the dependencies
+3. Run `npm start` then here you go!
+
 ## License
 
 [MIT](https://oss.ninja/mit/developit/)
