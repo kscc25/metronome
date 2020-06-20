@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Metronome</title>
+
+  <style>
+    body {
+      text-align: center;
+    }
+
+    .beat {
+      font-size: 120px;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      margin-left: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="beat">0</div>
+  <button id="play">Play / Pause</button>
+  <br /><br />
+  <span>Tempo:</span><input type="number" id="tempo" value="120" />
+
+  <script src="/js/metronome.umd.js"></script>
+  <script>
+    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+    const metronome = new window.metronome.Metronome({
+      tempo: 120,
+      buildBeat(audioContext, beatIndex) {
+        const oscillator = audioContext.createOscillator();
+
+        if (beatIndex % 4 === 0) {
+          oscillator.type = 'sine';
+        } else if (beatIndex % 4 === 1) {
+          oscillator.type = 'sawtooth';
+        } else if (beatIndex % 4 === 2) {
+          oscillator.type = 'square';
+        } else {
+          oscillator.type = 'triangle';
+        }
+
+        oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // value in hertz
+
+        return oscillator;
+      },
+      onBeatScheduled(beatIndex, time, audioContext) {
+        // for precision you need to do this when audioContext.currentTime = time
+        document.querySelector('.beat').innerText = beatIndex;
+      }
+    });
+
+    let intervalId;
+    const tempoInput = document.getElementById('tempo');
+
+    document.getElementById('play').addEventListener('click', () => {
+      metronome.init();
+
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+        metronome.stop();
+        document.getElementById('play').innerText = 'Play';
+      } else {
+        intervalId = setInterval(() => metronome.tick(), 25);
+        metronome.setTempo(parseInt(tempoInput.value) || 120);
+        metronome.start();
+        document.getElementById('play').innerText = 'Pause';
+      }
+    });
+
+    tempoInput.addEventListener('change', (event) => {
+      if (intervalId) {
+        metronome.setTempo(parseInt(event.target.value) || 120);
+      }
+    })
+  </script>
+</body>
+
+</html>

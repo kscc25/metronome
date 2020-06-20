@@ -1,0 +1,22 @@
+{
+  "name": "musical-metronome",
+  "version": "0.0.1",
+  "description": "JavaScript metronome library using Web Audio API",
+  "source": "src/index.js",
+  "main": "dist/metronome.js",
+  "module": "dist/metronome.module.js",
+  "unpkg": "dist/metronome.umd.js",
+  "scripts": {
+    "build": "microbundle build",
+    "watch": "microbundle watch --output=public/js --format=umd",
+    "start": "npm-run-all --parallel watch serve",
+    "serve": "servor public index.html 8080 --reload"
+  },
+  "author": "heroandtn3",
+  "license": "MIT",
+  "devDependencies": {
+    "microbundle": "^0.12.1",
+    "npm-run-all": "^4.1.5",
+    "servor": "^4.0.2"
+  }
+}
