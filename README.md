@@ -2,6 +2,8 @@
 
 > JavaScript metronome library using Web Audio API
 
+See it in action: https://github.com/heroandtn3/pwa-metronome
+
 ## Installation
 
 ```
