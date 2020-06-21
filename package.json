@@ -1,6 +1,6 @@
 {
   "name": "musical-metronome",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "JavaScript metronome library using Web Audio API",
   "source": "src/index.js",
   "main": "dist/metronome.js",
