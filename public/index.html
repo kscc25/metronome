@@ -31,11 +31,11 @@
   <br /><br />
   <span>Tempo:</span><input type="number" id="tempo" value="120" />
 
-  <script src="/js/metronome.umd.js"></script>
+  <script src="/js/musical-metronome.umd.js"></script>
   <script>
     window.AudioContext = window.AudioContext || window.webkitAudioContext;
 
-    const metronome = new window.metronome.Metronome({
+    const metronome = new window.musicalMetronome.Metronome({
       tempo: 120,
       buildBeat(audioContext, beatIndex) {
         const oscillator = audioContext.createOscillator();

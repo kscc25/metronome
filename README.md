@@ -18,8 +18,7 @@ import { Metronome } from 'musical-metronome';
 const { Metronome } = require('musical-metronome');
 
 //UMD
-const Metronome = window.metronome.Metronome;
-
+const Metronome = window.musicalMetronome.Metronome;
 
 const metronome = new Metronome({ tempo: 120 });
 
