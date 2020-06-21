@@ -27,7 +27,7 @@ export default class Metronome {
 
   init() {
     if (!this.initialized) {
-      this.audioContext = new AudioContext();
+      this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
       this.nextBeatTime = this.audioContext.currentTime;
 
       // play silent buffer to unlock the audio
