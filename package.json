@@ -8,8 +8,9 @@
   "unpkg": "dist/metronome.umd.js",
   "scripts": {
     "build": "microbundle build",
-    "watch": "microbundle watch --output=public/js --format=umd",
-    "start": "npm-run-all --parallel watch serve",
+    "watch": "microbundle watch",
+    "watch-dev": "microbundle watch --output=public/js --format=umd",
+    "start": "npm-run-all --parallel watch-dev serve",
     "serve": "servor public index.html 8080 --reload"
   },
   "author": "heroandtn3",
